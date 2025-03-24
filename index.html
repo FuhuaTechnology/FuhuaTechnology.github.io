@@ -41,7 +41,6 @@
             margin: 4rem 0 3rem;
             position: relative;
         }
-    
 
         .title {
             color: var(--primary);
@@ -123,125 +122,191 @@
             line-height: 1.6;
         }
 
-
         @keyframes starMove {
             0% { transform: translate(0, 0); }
             50% { transform: translate(20px, 20px); }
             100% { transform: translate(0, 0); }
         }
-/* 新增样式 */
-.badge-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0;
-}
 
-.value-badge {
-    padding: 8px 20px;
-    border: 1px solid var(--primary);
-    border-radius: 20px;
-    color: var(--primary);
-    font-size: 0.9rem;
-    position: relative;
-    transition: 0.3s;
-}
+        /* 新增样式修正 */
+        .about {
+            margin: 3rem 0;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+            background: rgba(16, 22, 36, 0.6);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
 
-.value-badge:hover {
-    background: rgba(0, 243, 255, 0.1);
-    transform: translateY(-2px);
-}
+        .hologram-bar {
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 3px;
+            background: linear-gradient(90deg,
+                transparent,
+                var(--primary),
+                transparent);
+            animation: hologram 3s linear infinite;
+        }
 
-.info-icon {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-}
+        .section-title {
+            color: var(--primary);
+            text-align: center;
+            margin: 1rem 0 2rem;
+            font-size: 1.8rem;
+            position: relative;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+        }
 
-.timeline {
-    position: relative;
-    margin: 2rem auto;
-    max-width: 600px;
-}
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
 
-.milestone {
-    display: flex;
-    align-items: center;
-    margin: 1.5rem 0;
-    padding-left: 100px;
-}
+        .value-badge {
+            padding: 8px 20px;
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
 
-.year {
-    width: 80px;
-    color: var(--primary);
-    font-weight: bold;
-    position: absolute;
-    left: 0;
-}
+        .value-badge:hover {
+            background: rgba(0, 243, 255, 0.1);
+            transform: translateY(-2px);
+        }
 
-.dot {
-    width: 12px;
-    height: 12px;
-    background: var(--primary);
-    border-radius: 50%;
-    margin-right: 1rem;
-}
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
 
-.desc {
-    color: 8da1b9;
-}
+        .info-item {
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            text-align: center;
+        }
 
-.sector-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
+        .info-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
 
-.stats {
-    display: flex;
-    justify-content: space-around;
-}
+        .info-label {
+            color: #8da1b9;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
 
-.stat-item {
-    text-align: center;
-    font-size: 1.4rem;
-    color: var(--primary);
-}
+        .info-content {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
 
-.stat-item small {
-    display: block;
-    font-size: 0.8rem;
-    color: 8da1b9;
-    margin-top: 0.3rem;
-}
+        .timeline {
+            position: relative;
+            margin: 2rem auto;
+            max-width: 600px;
+        }
 
-.case-showcase {
-    margin-top: 3rem;
-}
+        .milestone {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            padding-left: 100px;
+        }
 
-.case-scroll {
-    display: flex;
-    overflow-x: auto;
-    gap: 1.5rem;
-    padding: 1rem 0;
-}
+        .year {
+            width: 80px;
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
 
-.case-card {
-    flex-shrink: 0;
-    padding: 1rem 2rem;
-    border: 1px solid rgba(0, 243, 255, 0.2);
-    border-radius: 8px;
-    min-width: 220px;
-    text-align: center;
-    transition: 0.3s;
-}
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
 
-.case-card:hover {
-    background: rgba(0, 243, 255, 0.05);
-    transform: translateY(-3px);
-}
-</style>
+        .desc {
+            color: #8da1b9;
+        }
+
+        @keyframes hologram {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
+        }
+
+        .sector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .stat-item {
+            text-align: center;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+
+        .stat-item small {
+            display: block;
+            font-size: 0.8rem;
+            color: #8da1b9;
+            margin-top: 0.3rem;
+        }
+
+        .case-showcase {
+            margin-top: 3rem;
+            width: 100%;
+        }
+
+        .case-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        .case-card {
+            flex-shrink: 0;
+            padding: 1rem 2rem;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            min-width: 220px;
+            text-align: center;
+            transition: 0.3s;
+            color: #8da1b9;
+        }
+
+        .case-card:hover {
+            background: rgba(0, 243, 255, 0.05);
+            transform: translateY(-3px);
+        }
+    </style>
 </head>
 <body>
     <div class="stars"></div>
@@ -266,100 +331,96 @@
             <p class="card-desc">采用与环球影城同类的裸眼动感技术，视觉装置为碗状</p>
         </a>
 
-       <a href="https://www.bilibili.com/video/BV1KzqBYHE4d/" class="card">
+        <a href="https://www.bilibili.com/video/BV1KzqBYHE4d/" class="card">
             <h2 class="card-title">悬空影院</h2>
-            <p class="card-desc">视觉显示装置由180°环形LED屏幕、地面LED屏和顶面LED屏组成，让观众感受到具有包裹性、</p>
+            <p class="card-desc">视觉显示装置由180°环形LED屏幕、地面LED屏和顶面LED屏组成，让观众感受到具有包裹性、沉浸式的视觉体验</p>
         </a>
     </div>
-    <!-- 在原有dashboard div后面添加以下代码 -->
-<div class="about">
-    <div class="hologram-bar"></div>
-    <h2 class="section-title">富华智能科技</h2>
-    
-    <!-- 核心价值徽章 -->
-    <div class="badge-container">
-        <span class="value-badge">创新</span>
-        <span class="value-badge">变革</span>
-        <span class="value-badge">科技</span>
-        <span class="value-badge">文化</span>
-        <span class="value-badge">艺术</span>
-        <span class="value-badge">共赢</span>
-    </div>
 
-    <!-- 企业信息网格 -->
-    <div class="info-grid">
-        <div class="info-item">
-            <div class="info-icon">⏳</div>
-            <div class="info-label">创立时间</div>
-            <div class="info-content">2012.01.06</div>
+    <!-- 公司信息模块 -->
+    <div class="about">
+        <div class="hologram-bar"></div>
+        <h2 class="section-title">富华智能科技</h2>
+        
+        <div class="badge-container">
+            <span class="value-badge">创新</span>
+            <span class="value-badge">变革</span>
+            <span class="value-badge">科技</span>
+            <span class="value-badge">文化</span>
+            <span class="value-badge">艺术</span>
+            <span class="value-badge">共赢</span>
         </div>
-        <div class="info-item">
-            <div class="info-icon">💰</div>
-            <div class="info-label">注册资金</div>
-            <div class="info-content">1000万元</div>
-        </div>
-        <div class="info-item">
-            <div class="info-icon">📍</div>
-            <div class="info-label">总部位置</div>
-            <div class="info-content">松山湖高新区</div>
-        </div>
-        <div class="info-item">
-            <div class="info-icon">🏆</div>
-            <div class="info-label">企业认证</div>
-            <div class="info-content">国家高新技术企业</div>
-        </div>
-    </div>
 
-    <!-- 行业地位时间轴 -->
-    <div class="timeline">
-        <div class="milestone">
-            <div class="year">2012</div>
-            <div class="dot"></div>
-            <div class="desc">公司成立，进军虚拟现实领域</div>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-icon">⏳</div>
+                <div class="info-label">创立时间</div>
+                <div class="info-content">2012.01.06</div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">💰</div>
+                <div class="info-label">注册资金</div>
+                <div class="info-content">1000万元</div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">📍</div>
+                <div class="info-label">总部位置</div>
+                <div class="info-content">松山湖高新区</div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">🏆</div>
+                <div class="info-label">企业认证</div>
+                <div class="info-content">国家高新技术企业</div>
+            </div>
         </div>
-        <div class="milestone">
-            <div class="year">2018</div>
-            <div class="dot"></div>
-            <div class="desc">获评广东省守合同重信用企业</div>
-        </div>
-        <div class="milestone">
-            <div class="year">2023</div>
-            <div class="dot"></div>
-            <div class="desc">VR店主联盟战略顾问单位</div>
-        </div>
-    </div>
 
-    <!-- 业务矩阵 -->
-    <div class="sector-grid">
-        <div class="sector">
-            <h3>核心业务</h3>
-            <ul>
-                <li>🎬 4D特效影院系统</li>
-                <li>🌪️ 自然灾害模拟平台</li>
-                <li>🛡️ 公共安全教育方案</li>
-                <li>🎮 VR泛娱乐开发</li>
-            </ul>
+        <div class="timeline">
+            <div class="milestone">
+                <div class="year">2012</div>
+                <div class="dot"></div>
+                <div class="desc">公司成立，进军虚拟现实领域</div>
+            </div>
+            <div class="milestone">
+                <div class="year">2018</div>
+                <div class="dot"></div>
+                <div class="desc">获评广东省守合同重信用企业</div>
+            </div>
+            <div class="milestone">
+                <div class="year">2023</div>
+                <div class="dot"></div>
+                <div class="desc">VR店主联盟战略顾问单位</div>
+            </div>
         </div>
-        <div class="sector">
-            <h3>研发实力</h3>
-            <div class="stats">
-                <div class="stat-item">5000m²<small>研发中心</small></div>
-                <div class="stat-item">50+<small>专利成果</small></div>
-                <div class="stat-item">8大<small>专业领域</small></div>
+
+        <div class="sector-grid">
+            <div class="sector">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">核心业务</h3>
+                <ul style="color: #8da1b9; list-style: none; padding: 0;">
+                    <li>🎬 4D特效影院系统</li>
+                    <li>🌪️ 自然灾害模拟平台</li>
+                    <li>🛡️ 公共安全教育方案</li>
+                    <li>🎮 VR泛娱乐开发</li>
+                </ul>
+            </div>
+            <div class="sector">
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">研发实力</h3>
+                <div class="stats">
+                    <div class="stat-item">5000m²<small>研发中心</small></div>
+                    <div class="stat-item">50+<small>专利成果</small></div>
+                    <div class="stat-item">8大<small>专业领域</small></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="case-showcase">
+            <h3 style="color: var(--primary); text-align: center; margin-bottom: 1.5rem;">标杆项目</h3>
+            <div class="case-scroll">
+                <div class="case-card">花都融创科普乐园</div>
+                <div class="case-card">海昏侯数字博物馆</div>
+                <div class="case-card">华侨城VR文旅</div>
+                <div class="case-card">深圳西部公交系统</div>
             </div>
         </div>
     </div>
-
-    <!-- 成功案例 -->
-    <div class="case-showcase">
-        <h3>标杆项目</h3>
-        <div class="case-scroll">
-            <div class="case-card">花都融创科普乐园</div>
-            <div class="case-card">海昏侯数字博物馆</div>
-            <div class="case-card">华侨城VR文旅</div>
-            <div class="case-card">深圳西部公交系统</div>
-        </div>
-    </div>
-</div>
 </body>
 </html>
