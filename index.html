@@ -127,7 +127,113 @@
             50% { transform: translate(20px, 20px); }
             100% { transform: translate(0, 0); }
         }
+/* 新增企业信息样式 */
+.value-pyramid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+}
 
+.pyramid-row {
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0;
+}
+
+.value-chip {
+    padding: 0.8rem 2rem;
+    margin: 0 0.5rem;
+    background: rgba(0, 243, 255, 0.1);
+    border: 1px solid var(--primary);
+    border-radius: 2rem;
+    color: var(--primary);
+    font-size: 1.1rem;
+    transition: transform 0.3s;
+}
+
+.corporate-architecture {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.corporate-pillar {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: transform 0.3s;
+}
+
+.corporate-pillar.main {
+    border: 2px solid var(--primary);
+    box-shadow: 0 0 40px rgba(0, 243, 255, 0.1);
+}
+
+.monolith-icon, 
+.crown-icon, 
+.tower-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px var(--primary));
+}
+
+.domain-spectrum {
+    margin: 3rem 0;
+}
+
+.spectrum-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.domain-card {
+    padding: 1.5rem;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.domain-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.showcase-monument {
+    margin-top: 4rem;
+}
+
+.monument-carousel {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.monument-pillar {
+    width: 200px;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    text-align: center;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+.project-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* 悬停动画 */
+.value-chip:hover,
+.corporate-pillar:hover,
+.domain-card:hover,
+.monument-pillar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 243, 255, 0.2);
+}
     </style>
 </head>
 <body>
@@ -158,5 +264,112 @@
             <p class="card-desc">视觉显示装置由180°环形LED屏幕、地面LED屏和顶面LED屏组成，让观众感受到具有包裹性、沉浸式的视觉体验</p>
         </a>
     </div>
+    <!-- 在about模块内替换为以下结构 -->
+<div class="about">
+    <div class="hologram-bar"></div>
+    
+    <!-- 核心价值徽章 -->
+    <div class="value-pyramid">
+        <div class="pyramid-row">
+            <span class="value-chip">创新</span>
+        </div>
+        <div class="pyramid-row">
+            <span class="value-chip">变革</span>
+            <span class="value-chip">科技</span>
+        </div>
+        <div class="pyramid-row">
+            <span class="value-chip">文化</span>
+            <span class="value-chip">艺术</span>
+            <span class="value-chip">共赢</span>
+        </div>
+    </div>
+
+    <!-- 企业信息架构 -->
+    <div class="corporate-architecture">
+        <!-- 左列-基础信息 -->
+        <div class="corporate-pillar">
+            <div class="info-monolith">
+                <div class="monolith-icon">🏭</div>
+                <h3>企业根基</h3>
+                <div class="monolith-detail">
+                    <p>创立于2012.01.06</p>
+                    <p>注册资本金1000万元</p>
+                    <p>总部：松山湖高新技术开发区</p>
+                    <p>广州分部：番禺区</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 中列-行业地位 -->
+        <div class="corporate-pillar main">
+            <div class="industry-crown">
+                <div class="crown-icon">👑</div>
+                <h2>VR行业龙头</h2>
+                <div class="crown-detail">
+                    <p>国家高新技术企业</p>
+                    <p>广东省守合同重信用企业</p>
+                    <p>广州市创新标杆企业</p>
+                    <p>VR店主联盟战略顾问单位</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右列-技术实力 -->
+        <div class="corporate-pillar">
+            <div class="tech-tower">
+                <div class="tower-icon">🏗️</div>
+                <h3>研发矩阵</h3>
+                <div class="tower-detail">
+                    <p>5000m²研发中心</p>
+                    <p>跨学科专业团队</p>
+                    <p>50+知识产权证书</p>
+                    <p>8大核心技术领域</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 业务领域 -->
+    <div class="domain-spectrum">
+        <h3>核心业务生态</h3>
+        <div class="spectrum-grid">
+            <div class="domain-card">
+                <div class="domain-icon">🌪️</div>
+                <h4>灾害模拟系统</h4>
+                <p>台风/地震/消防等场景复现</p>
+            </div>
+            <div class="domain-card">
+                <div class="domain-icon">🎮</div>
+                <h4>VR沉浸娱乐</h4>
+                <p>科普教育/文旅体验/电竞空间</p>
+            </div>
+            <div class="domain-card">
+                <div class="domain-icon">🏗️</div>
+                <h4>数字孪生</h4>
+                <p>城市规划/工程监理/工业仿真</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 标杆案例 -->
+    <div class="showcase-monument">
+        <h3>行业标杆项目</h3>
+        <div class="monument-carousel">
+            <div class="monument-pillar">
+                <div class="project-icon">🏰</div>
+                <p>花都融创科普乐园</p>
+            </div>
+            <div class="monument-pillar">
+                <div class="project-icon">🚌</div>
+                <p>深圳西部公交系统</p>
+            </div>
+            <div class="monument-pillar">
+                <div class="project-icon">🏛️</div>
+                <p>海昏侯数字博物馆</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
