@@ -128,184 +128,151 @@
             100% { transform: translate(0, 0); }
         }
 
-        /* 新增样式修正 */
-        .about {
-            margin: 3rem 0;
-            padding: 2rem;
-            width: 100%;
-            max-width: 800px;
-            position: relative;
-            background: rgba(16, 22, 36, 0.6);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 8px;
-            overflow: hidden;
-        }
+/* 新增about模块样式 */
+.about {
+    margin: 4rem 0;
+    padding: 3rem 2rem;
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    background: rgba(16, 22, 36, 0.8);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    border-radius: 16px;
+    overflow: hidden;
+}
 
-        .hologram-bar {
-            position: absolute;
-            top: 0;
-            left: -50%;
-            width: 200%;
-            height: 3px;
-            background: linear-gradient(90deg,
-                transparent,
-                var(--primary),
-                transparent);
-            animation: hologram 3s linear infinite;
-        }
+/* 核心信息三列布局 */
+.info-trio {
+    display: grid;
+    grid-template-columns: 1fr 1.618fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 4rem;
+}
 
-        .section-title {
-            color: var(--primary);
-            text-align: center;
-            margin: 1rem 0 2rem;
-            font-size: 1.8rem;
-            position: relative;
-            text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-        }
+.info-pillar {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s;
+}
 
-        .badge-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
+.info-pillar.main {
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
+}
 
-        .value-badge {
-            padding: 8px 20px;
-            border: 1px solid var(--primary);
-            border-radius: 20px;
-            color: var(--primary);
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
+.pillar-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 8px var(--primary));
+}
 
-        .value-badge:hover {
-            background: rgba(0, 243, 255, 0.1);
-            transform: translateY(-2px);
-        }
+.info-pillar h2 {
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin: 1rem 0;
+}
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
+.info-pillar h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
 
-        .info-item {
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 4px;
-            text-align: center;
-        }
+.divider {
+    width: 60px;
+    height: 2px;
+    background: var(--primary);
+    margin: 1.5rem auto;
+    opacity: 0.6;
+}
 
-        .info-icon {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
+/* 数据矩阵 */
+.data-matrix {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+}
 
-        .info-label {
-            color: #8da1b9;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
+.matrix-item {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid rgba(0, 243, 255, 0.1);
+}
 
-        .info-content {
-            color: var(--primary);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
+.matrix-item.highlight {
+    transform: scale(1.05);
+    background: linear-gradient(45deg, 
+        rgba(0, 243, 255, 0.1), 
+        rgba(58, 58, 255, 0.1));
+}
 
-        .timeline {
-            position: relative;
-            margin: 2rem auto;
-            max-width: 600px;
-        }
+.matrix-value {
+    color: var(--primary);
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
 
-        .milestone {
-            display: flex;
-            align-items: center;
-            margin: 1.5rem 0;
-            padding-left: 100px;
-        }
+.matrix-value sup {
+    font-size: 1.5rem;
+    vertical-align: super;
+}
 
-        .year {
-            width: 80px;
-            color: var(--primary);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
+.matrix-label {
+    color: #8da1b9;
+    font-size: 0.9rem;
+}
 
-        .dot {
-            width: 12px;
-            height: 12px;
-            background: var(--primary);
-            border-radius: 50%;
-            margin-right: 1rem;
-        }
+/* 时间轴轮盘 */
+.milestone-wheel {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-top: 4rem;
+}
 
-        .desc {
-            color: #8da1b9;
-        }
+.wheel-item {
+    width: 30%;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+}
 
-        @keyframes hologram {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(100%); }
-        }
+.wheel-year {
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
 
-        .sector-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
+.wheel-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin: 1rem 0;
+}
 
-        .stats {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .stat-item {
-            text-align: center;
-            font-size: 1.4rem;
-            color: var(--primary);
-        }
-
-        .stat-item small {
-            display: block;
-            font-size: 0.8rem;
-            color: #8da1b9;
-            margin-top: 0.3rem;
-        }
-
-        .case-showcase {
-            margin-top: 3rem;
-            width: 100%;
-        }
-
-        .case-scroll {
-            display: flex;
-            overflow-x: auto;
-            gap: 1.5rem;
-            padding: 1rem 0;
-        }
-
-        .case-card {
-            flex-shrink: 0;
-            padding: 1rem 2rem;
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 8px;
-            min-width: 220px;
-            text-align: center;
-            transition: 0.3s;
-            color: #8da1b9;
-        }
-
-        .case-card:hover {
-            background: rgba(0, 243, 255, 0.05);
-            transform: translateY(-3px);
-        }
+.wheel-desc {
+    color: #8da1b9;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 1.4;
+    padding: 0 1rem;
+}
     </style>
 </head>
 <body>
@@ -338,89 +305,66 @@
     </div>
 
     <!-- 公司信息模块 -->
-    <div class="about">
-        <div class="hologram-bar"></div>
-        <h2 class="section-title">富华智能科技</h2>
-        
-        <div class="badge-container">
-            <span class="value-badge">创新</span>
-            <span class="value-badge">变革</span>
-            <span class="value-badge">科技</span>
-            <span class="value-badge">文化</span>
-            <span class="value-badge">艺术</span>
-            <span class="value-badge">共赢</span>
-        </div>
-
-        <div class="info-grid">
-            <div class="info-item">
-                <div class="info-icon">⏳</div>
-                <div class="info-label">创立时间</div>
-                <div class="info-content">2012.01.06</div>
+<!-- 修改about模块的HTML结构 -->
+<div class="about">
+    <div class="hologram-bar"></div>
+    
+    <!-- 核心信息三联卡 -->
+    <div class="core-info">
+        <div class="info-trio">
+            <div class="info-pillar">
+                <div class="pillar-icon">🚀</div>
+                <h3>创新速度</h3>
+                <p>年均推出<br>12+新技术方案</p>
             </div>
-            <div class="info-item">
-                <div class="info-icon">💰</div>
-                <div class="info-label">注册资金</div>
-                <div class="info-content">1000万元</div>
+            <div class="info-pillar main">
+                <div class="pillar-icon">🏛️</div>
+                <h2>富华智能科技</h2>
+                <div class="divider"></div>
+                <p>成立于2012年 · 国家级高新技术企业</p>
             </div>
-            <div class="info-item">
-                <div class="info-icon">📍</div>
-                <div class="info-label">总部位置</div>
-                <div class="info-content">松山湖高新区</div>
-            </div>
-            <div class="info-item">
-                <div class="info-icon">🏆</div>
-                <div class="info-label">企业认证</div>
-                <div class="info-content">国家高新技术企业</div>
-            </div>
-        </div>
-
-        <div class="timeline">
-            <div class="milestone">
-                <div class="year">2012</div>
-                <div class="dot"></div>
-                <div class="desc">公司成立，进军虚拟现实领域</div>
-            </div>
-            <div class="milestone">
-                <div class="year">2018</div>
-                <div class="dot"></div>
-                <div class="desc">获评广东省守合同重信用企业</div>
-            </div>
-            <div class="milestone">
-                <div class="year">2023</div>
-                <div class="dot"></div>
-                <div class="desc">VR店主联盟战略顾问单位</div>
-            </div>
-        </div>
-
-        <div class="sector-grid">
-            <div class="sector">
-                <h3 style="color: var(--primary); margin-bottom: 1rem;">核心业务</h3>
-                <ul style="color: #8da1b9; list-style: none; padding: 0;">
-                    <li>🎬 4D特效影院系统</li>
-                    <li>🌪️ 自然灾害模拟平台</li>
-                    <li>🛡️ 公共安全教育方案</li>
-                    <li>🎮 VR泛娱乐开发</li>
-                </ul>
-            </div>
-            <div class="sector">
-                <h3 style="color: var(--primary); margin-bottom: 1rem;">研发实力</h3>
-                <div class="stats">
-                    <div class="stat-item">5000m²<small>研发中心</small></div>
-                    <div class="stat-item">50+<small>专利成果</small></div>
-                    <div class="stat-item">8大<small>专业领域</small></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="case-showcase">
-            <h3 style="color: var(--primary); text-align: center; margin-bottom: 1.5rem;">标杆项目</h3>
-            <div class="case-scroll">
-                <div class="case-card">花都融创科普乐园</div>
-                <div class="case-card">海昏侯数字博物馆</div>
-                <div class="case-card">华侨城VR文旅</div>
-                <div class="case-card">深圳西部公交系统</div>
+            <div class="info-pillar">
+                <div class="pillar-icon">🌐</div>
+                <h3>项目覆盖</h3>
+                <p>服务全国<br>200+知名项目</p>
             </div>
         </div>
     </div>
+
+    <!-- 数据矩阵 -->
+    <div class="data-matrix">
+        <div class="matrix-item">
+            <div class="matrix-value">5000<sup>+</sup></div>
+            <div class="matrix-label">平方米研发中心</div>
+        </div>
+        <div class="matrix-item highlight">
+            <div class="matrix-value">100<sup>+</sup></div>
+            <div class="matrix-label">技术专利储备</div>
+        </div>
+        <div class="matrix-item">
+            <div class="matrix-value">8:1</div>
+            <div class="matrix-label">研发生效比</div>
+        </div>
+    </div>
+
+    <!-- 时空里程碑 -->
+    <div class="milestone-wheel">
+        <div class="wheel-item">
+            <div class="wheel-year">2012</div>
+            <div class="wheel-dot"></div>
+            <div class="wheel-desc">虚拟现实技术研发中心成立</div>
+        </div>
+        <div class="wheel-item">
+            <div class="wheel-year">2018</div>
+            <div class="wheel-dot"></div>
+            <div class="wheel-desc">通过国家高新技术企业认证</div>
+        </div>
+        <div class="wheel-item">
+            <div class="wheel-year">2023</div>
+            <div class="wheel-dot"></div>
+            <div class="wheel-desc">VR行业标准制定参与单位</div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
