@@ -1,16 +1,185 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>公司产品视频库</title>
+    <meta charset="UTF-8">
+    <title>QuantumView 视频数据中心</title>
     <style>
-        body { text-align:center; font-family:Arial; }
-        .video-link { display:block; margin:20px; padding:15px; background:#f0f0f0; border-radius:8px; }
+        :root {
+            --primary: #00f3ff;
+            --secondary: #3a3aff;
+            --bg: #000b15;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* 动态星空背景 */
+        .stars {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(58, 58, 255, 0.1) 0%, transparent 50%);
+            animation: starMove 20s linear infinite;
+        }
+
+        .header {
+            margin: 4rem 0 3rem;
+            position: relative;
+        }
+
+        .title {
+            color: var(--primary);
+            font-size: 2.8rem;
+            letter-spacing: 0.2em;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                var(--primary) 50%, 
+                transparent);
+        }
+
+        /* 悬浮卡片式按钮 */
+        .card-container {
+            display: grid;
+            gap: 2rem;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .card {
+            background: rgba(16, 22, 36, 0.8);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0, 243, 255, 0.1),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card-title {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-desc {
+            color: #8da1b9;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* 动态数据面板 */
+        .dashboard {
+            margin: 3rem 0;
+            padding: 2rem;
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(16, 22, 36, 0.6);
+        }
+
+        .data-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            padding: 0.8rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        @keyframes starMove {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
     </style>
 </head>
 <body>
-    <h1>选择产品宣传视频：</h1>
-    <a class="video-link" href="https://www.bilibili.com/video/BV1BxA8eEEdY/">产品A：功能演示</a>
-    <a class="video-link" href="https://www.bilibili.com/video/BV1yoCJYmEkr/">产品B：客户案例</a>
-    <!-- 继续添加更多视频 -->
+    <div class="stars"></div>
+    
+    <div class="header">
+        <h1 class="title">QUANTUMVIEW</h1>
+    </div>
+
+    <div class="card-container">
+        <a href="https://www.bilibili.com/video/BV1BxA8eEEdY/" class="card">
+            <h2 class="card-title">裸眼9D轨道影院</h2>
+            <p class="card-desc">第三代自动驾驶核心算法展示，包含多传感器融合技术</p>
+        </a>
+
+        <a href="https://www.bilibili.com/video/BV1yoCJYmEkr/" class="card">
+            <h2 class="card-title">VR大空间</h2>
+            <p class="card-desc">量子比特超导芯片的低温运行实况记录</p>
+        </a>
+
+        <a href="视频链接3" class="card">
+            <h2 class="card-title">数字孪生工厂</h2>
+            <p class="card-desc">基于工业元宇宙的智能制造全流程模拟</p>
+        </a>
+    </div>
+
+    <div class="dashboard">
+        <div class="data-item">
+            <span>视频总数</span>
+            <span style="color: var(--primary)">12</span>
+        </div>
+        <div class="data-item">
+            <span>今日访问</span>
+            <span style="color: var(--secondary)">1,234</span>
+        </div>
+    </div>
 </body>
 </html>
