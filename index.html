@@ -129,107 +129,119 @@
             50% { transform: translate(20px, 20px); }
             100% { transform: translate(0, 0); }
         }
-        /* 在原有style标签内添加以下CSS */
-.about {
-    margin: 3rem 0;
-    padding: 2rem;
-    width: 100%;
-    max-width: 800px;
-    position: relative;
-    background: rgba(16, 22, 36, 0.6);
-    border: 1px solid rgba(0, 243, 255, 0.2);
-    border-radius: 8px;
-    overflow: hidden;
+/* 新增样式 */
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
 }
 
-.hologram-bar {
-    position: absolute;
-    top: 0;
-    left: -50%;
-    width: 200%;
-    height: 3px;
-    background: linear-gradient(90deg,
-        transparent,
-        var(--primary),
-        transparent);
-    animation: hologram 3s linear infinite;
-}
-
-.section-title {
+.value-badge {
+    padding: 8px 20px;
+    border: 1px solid var(--primary);
+    border-radius: 20px;
     color: var(--primary);
-    text-align: center;
-    margin: 1rem 0 2rem;
-    font-size: 1.8rem;
-    position: relative;
-    text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.info-item {
-    position: relative;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 4px;
-}
-
-.info-label {
-    color: #8da1b9;
     font-size: 0.9rem;
+    position: relative;
+    transition: 0.3s;
+}
+
+.value-badge:hover {
+    background: rgba(0, 243, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.info-icon {
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
 }
 
-.info-content {
-    color: var(--primary);
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-.info-line {
-    height: 1px;
-    background: linear-gradient(90deg, 
-        transparent, 
-        var(--primary) 50%, 
-        transparent);
-    margin-top: 1rem;
-}
-
-.info-desc {
-    color: #8da1b9;
-    text-align: center;
-    line-height: 1.6;
-    padding: 0 1.5rem;
+.timeline {
     position: relative;
+    margin: 2rem auto;
+    max-width: 600px;
 }
 
-.info-desc::before,
-.info-desc::after {
-    content: "◆";
+.milestone {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+    padding-left: 100px;
+}
+
+.year {
+    width: 80px;
     color: var(--primary);
+    font-weight: bold;
     position: absolute;
-    font-size: 0.8rem;
-}
-
-.info-desc::before {
     left: 0;
-    top: 0;
 }
 
-.info-desc::after {
-    right: 0;
-    bottom: 0;
+.dot {
+    width: 12px;
+    height: 12px;
+    background: var(--primary);
+    border-radius: 50%;
+    margin-right: 1rem;
 }
 
-@keyframes hologram {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(100%); }
+.desc {
+    color: #8da1b9;
 }
-    </style>
+
+.sector-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+}
+
+.stat-item {
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--primary);
+}
+
+.stat-item small {
+    display: block;
+    font-size: 0.8rem;
+    color: #8da1b9;
+    margin-top: 0.3rem;
+}
+
+.case-showcase {
+    margin-top: 3rem;
+}
+
+.case-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.case-card {
+    flex-shrink: 0;
+    padding: 1rem 2rem;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    border-radius: 8px;
+    min-width: 220px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.case-card:hover {
+    background: rgba(0, 243, 255, 0.05);
+    transform: translateY(-3px);
+}
+</style>
 </head>
 <body>
     <div class="stars"></div>
@@ -262,27 +274,91 @@
     <!-- 在原有dashboard div后面添加以下代码 -->
 <div class="about">
     <div class="hologram-bar"></div>
-    <h2 class="section-title">富华智能科技有限公司</h2>
+    <h2 class="section-title">富华智能科技</h2>
+    
+    <!-- 核心价值徽章 -->
+    <div class="badge-container">
+        <span class="value-badge">创新</span>
+        <span class="value-badge">变革</span>
+        <span class="value-badge">科技</span>
+        <span class="value-badge">文化</span>
+        <span class="value-badge">艺术</span>
+        <span class="value-badge">共赢</span>
+    </div>
+
+    <!-- 企业信息网格 -->
     <div class="info-grid">
         <div class="info-item">
+            <div class="info-icon">⏳</div>
             <div class="info-label">创立时间</div>
-            <div class="info-content">2012年01月06日</div>
-            <div class="info-line"></div>
+            <div class="info-content">2012.01.06</div>
         </div>
         <div class="info-item">
-            <div class="info-label">公司地址</div>
-            <div class="info-content">总部位于松山湖高新技术产业开发区，广州分公司位于番禺区</div>
-            <div class="info-line"></div>
+            <div class="info-icon">💰</div>
+            <div class="info-label">注册资金</div>
+            <div class="info-content">1000万元</div>
         </div>
         <div class="info-item">
-            <div class="info-label">核心领域</div>
-            <div class="info-content">VR科普教育｜VR文化旅游｜VR泛娱乐</div>
-            <div class="info-line"></div>
+            <div class="info-icon">📍</div>
+            <div class="info-label">总部位置</div>
+            <div class="info-content">松山湖高新区</div>
+        </div>
+        <div class="info-item">
+            <div class="info-icon">🏆</div>
+            <div class="info-label">企业认证</div>
+            <div class="info-content">国家高新技术企业</div>
         </div>
     </div>
-    <div class="info-desc">
-        涵盖4D影院、台风、地震等自然灾害，禁毒、消防、交通、工地等公共安全馆，VR科普教育、VR文化旅游、VR泛娱乐等多领域，在国内VR行业处于龙头地位。富华研发实力雄厚，拥有5000多平方米的研发中心，团队成员由创意设计、数字技术、计算机、城市规划、建筑学等专业人才组成，荣获国家多项专利及计算机软件著作以及知识产权证书.
-富华以打造高品质规划方案为目的，已为多家企业提供展馆、文旅等项目服务，花都融创科普乐园、华侨城、深圳西部公交、海昏侯博物馆、东莞龙凤山庄等多个项目，是中国VR店主联盟战略发展顾问单位，成为行业的标杆企业!
+
+    <!-- 行业地位时间轴 -->
+    <div class="timeline">
+        <div class="milestone">
+            <div class="year">2012</div>
+            <div class="dot"></div>
+            <div class="desc">公司成立，进军虚拟现实领域</div>
+        </div>
+        <div class="milestone">
+            <div class="year">2018</div>
+            <div class="dot"></div>
+            <div class="desc">获评广东省守合同重信用企业</div>
+        </div>
+        <div class="milestone">
+            <div class="year">2023</div>
+            <div class="dot"></div>
+            <div class="desc">VR店主联盟战略顾问单位</div>
+        </div>
+    </div>
+
+    <!-- 业务矩阵 -->
+    <div class="sector-grid">
+        <div class="sector">
+            <h3>核心业务</h3>
+            <ul>
+                <li>🎬 4D特效影院系统</li>
+                <li>🌪️ 自然灾害模拟平台</li>
+                <li>🛡️ 公共安全教育方案</li>
+                <li>🎮 VR泛娱乐开发</li>
+            </ul>
+        </div>
+        <div class="sector">
+            <h3>研发实力</h3>
+            <div class="stats">
+                <div class="stat-item">5000m²<small>研发中心</small></div>
+                <div class="stat-item">50+<small>专利成果</small></div>
+                <div class="stat-item">8大<small>专业领域</small></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 成功案例 -->
+    <div class="case-showcase">
+        <h3>标杆项目</h3>
+        <div class="case-scroll">
+            <div class="case-card">花都融创科普乐园</div>
+            <div class="case-card">海昏侯数字博物馆</div>
+            <div class="case-card">华侨城VR文旅</div>
+            <div class="case-card">深圳西部公交系统</div>
+        </div>
     </div>
 </div>
 </body>
