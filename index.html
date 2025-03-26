@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>富华科技</title>
+    <!-- 移动端适配 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- 微信环境优化 -->
+    <meta name="referrer" content="never">
+    <title>企业视频库</title>
     <style>
-        :root {
-            --primary: #00f3ff;
-            --secondary: #3a3aff;
-            --bg: #000b15;
-        }
-
+        /* 基础样式重置 */
         * {
             margin: 0;
             padding: 0;
@@ -17,374 +16,134 @@
         }
 
         body {
-            background: var(--bg);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-family: 'Roboto', sans-serif;
-            color: #c0f4ff;
-            overflow-x: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f5;
         }
 
-        /* 动态星空背景 */
-        .stars {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 243, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(58, 58, 255, 0.1) 0%, transparent 50%);
-            animation: starMove 20s linear infinite;
-        }
-
+        /* 标题样式 */
         .header {
-            margin: 4rem 0 3rem;
-            position: relative;
-        }
-
-        .title {
-            color: var(--primary);
-            font-size: 2.8rem;
-            letter-spacing: 0.2em;
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
-            position: relative;
-            z-index: 2;
-        }
-        .title2 {
-            color: var(--primary);
-            font-size: 1rem;
-            letter-spacing: 0.2em;
-            text-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
-            position: relative;
-            z-index: 2;
             text-align: center;
-            margin-top: 2rem;
-            margin-bottom: -2rem;
+            padding: 20px 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
-        .title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary) 50%, transparent);
-        }
-
-        /* 产品卡片容器 */
-        .card-container {
+        /* 视频网格布局 */
+        .video-grid {
             display: grid;
-            gap: 2rem;
-            padding: 2rem;
-            width: 100%;
-            max-width: 800px;
-        }
-
-        .card {
-            background: rgba(16, 22, 36, 0.8);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 8px;
-            padding: 1.5rem;
-            backdrop-filter: blur(5px);
-            transition: 0.3s;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 200%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
-            transition: 0.5s;
-        }
-
-        .card:hover::before {
-            left: 100%;
-        }
-
-        .card-title {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .card-desc {
-            color: #8dd7ff;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* 公司信息模块 */
-        .about {
-            margin: 4rem 0;
-            padding: 3rem 2rem;
-            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            padding: 15px;
             max-width: 1200px;
-            background: rgba(16, 22, 36, 0.8);
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            border-radius: 16px;
+            margin: 0 auto;
         }
 
-        .value-pyramid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 2rem 0;
+        /* 单个视频卡片 */
+        .video-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
         }
 
-        .pyramid-row {
-            display: flex;
-            justify-content: center;
-            margin: 0.5rem 0;
+        .video-card:hover {
+            transform: translateY(-3px);
         }
 
-        .value-chip {
-            padding: 0.8rem 2rem;
-            margin: 0 0.5rem;
-            background: linear-gradient(45deg, 
-                rgba(0, 243, 255, 0.2), 
-                rgba(58, 58, 255, 0.2));
-            border: 1px solid var(--primary);
-            border-radius: 2rem;
-            color: var(--primary);
-            font-size: 1.1rem;
-            transition: transform 0.3s;
+        /* 视频封面图 */
+        .video-thumb {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
         }
 
-        .corporate-architecture {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr 1fr;
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .corporate-pillar {
-            background: rgba(16, 22, 36, 0.6);
-            border-radius: 1rem;
-            padding: 2rem;
-            transition: transform 0.3s;
-           text-align: center;
-        }
-
-        .corporate-pillar.main {
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 40px rgba(0, 243, 255, 0.1);
-        }
-
-        .monolith-icon, 
-        .crown-icon, 
-        .tower-icon {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 0 10px var(--primary));
-        }
-
-        .domain-spectrum {
-            margin: 3rem 0;
-        }
-
-        .spectrum-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .domain-card {
-            padding: 1.5rem;
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 1rem;
+        /* 视频标题 */
+        .video-title {
+            padding: 12px;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4;
             text-align: center;
         }
 
-        .domain-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .showcase-monument {
-            margin-top: 4rem;
-        }
-
-        .monument-carousel {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-        }
-
-        .monument-pillar {
-            width: 200px;
-            padding: 1.5rem;
-            background: rgba(16, 22, 36, 0.6);
-            border-radius: 1rem;
-            text-align: center;
-            border: 1px solid rgba(0, 243, 255, 0.2);
-        }
-.title-2{
-text-align: center;
-margin-bottom: 1rem;
-}
-
-        /* 动画效果 */
-        @keyframes starMove {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(20px, 20px); }
-            100% { transform: translate(0, 0); }
-        }
-
-        @keyframes hologram {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(100%); }
-        }
-
-        .value-chip:hover,
-        .corporate-pillar:hover,
-        .domain-card:hover,
-        .monument-pillar:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.2);
+        /* 移动端优化 */
+        @media (max-width: 480px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+            
+            .video-thumb {
+                height: 160px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="stars"></div>
-    
     <div class="header">
-        <h1 class="title">富华科技产品视频</h1>
-        <h4 class="title2">点击下方观看视频⬇⬇⬇⬇⬇</h4>
+        <h1>产品视频库</h1>
+        <p style="color:#666;margin-top:8px;">点击封面立即观看</p>
     </div>
 
-    <div class="card-container">
-        <a href="https://www.bilibili.com/video/BV1BxA8eEEdY/" class="card">
-            <h2 class="card-title">裸眼9D轨道影院</h2>
-            <p class="card-desc">实现真正意义的“沉浸式游乐”的项目产品，是富华科技的明星产品项目。采用环球影城和迪士尼同类型的环幕技术，具有浸入式裸眼效果。</p>
-        </a>
+    <div class="video-grid">
+        <!-- 视频项1 -->
+        <div class="video-card" onclick="playVideo('BV1BxA8eEEdY')">
+            <img 
+                src="https://i1.hdslb.com/bfs/archive/2e8276a45632aea788be57129416ae498f1932d3.jpg@308w_174h" 
+                class="video-thumb"
+                alt="智能投影仪演示"
+            >
+            <div class="video-title">智能投影仪演示</div>
+        </div>
 
-        <a href="https://www.bilibili.com/video/BV1KQosYeE18/" class="card">
-            <h2 class="card-title">VR大空间</h2>
-            <p class="card-desc">沉浸式元宇宙多人/单人游玩，包含PVP/PVE模式，核心优势在于打破传统VR的物理限制，通过高精度定位、多人协作、超大场景交互等技术，实现无拘束的沉浸式体验。</p>
-        </a>
+        <!-- 视频项2 -->
+        <div class="video-card" onclick="playVideo('BV1yy522y8yy')">
+            <img 
+                src="https://i0.hdslb.com/bfs/archive/封面图2.jpg" 
+                class="video-thumb"
+                alt="VR影院系统"
+            >
+            <div class="video-title">VR影院系统</div>
+        </div>
 
-        <a href="https://www.bilibili.com/video/BV1vYosY2Ern/" class="card">
-            <h2 class="card-title">球幕飞行影院</h2>
-            <p class="card-desc">由巨型球幕、动感座椅、悬挂提升系统、现场特效等大型系统组成，该项目较之世界同类项目在悬挂提升技术上有质的飞跃，并且获得了国家实用新型专利、国家大型游乐设施A级资质。</p>
-        </a>
-
-        <a href="https://www.bilibili.com/video/BV1TQosYeEwA/" class="card">
-            <h2 class="card-title">悬空影院</h2>
-            <p class="card-desc">采用与环球影城同类的裸眼动感技术，视觉显示装置由180°环形LED屏幕、地面LED屏和顶面LED屏组成；让观众感受到具有包裹性、沉浸感的显示空间</p>
-        </a>
+        <!-- 更多视频项... -->
     </div>
 
-    <div class="about">
-        <div class="value-pyramid">
-            <div class="pyramid-row">
-                <span class="value-chip">创新</span>
-            </div>
-            <div class="pyramid-row">
-                <span class="value-chip">变革</span>
-                <span class="value-chip">科技</span>
-            </div>
-            <div class="pyramid-row">
-                <span class="value-chip">文化</span>
-                <span class="value-chip">艺术</span>
-                <span class="value-chip">共赢</span>
-            </div>
-        </div>
+    <script>
+        // 播放器控制函数
+        function playVideo(bvid) {
+            const isWeChat = /MicroMessenger/i.test(navigator.userAgent);
+            const baseUrl = 'https://player.bilibili.com/player.html';
+            
+            // 构造播放地址
+            const params = new URLSearchParams({
+                bvid: bvid,
+                autoplay: 1,      // 自动播放
+                page: 1,         // 分P播放
+                high_quality: 1   // 最高画质
+            });
 
-        <div class="corporate-architecture">
-            <div class="corporate-pillar">
-                <div class="info-monolith">
-                    <div class="monolith-icon">🏭</div>
-                    <h3>企业根基</h3>
-                    <div class="monolith-detail">
-                        <p>创立于2012.01.06</p>
-                        <p>总部：松山湖高新技术开发区</p>
-                        <p>广州分部：番禺区</p>
-	        <p>官网：www.fhkjvr.com</p>
-	        <p>业务咨询：18026297144</p>
-                    </div>
-                </div>
-            </div>
+            const playerUrl = `${baseUrl}?${params}`;
 
-            <div class="corporate-pillar main">
-                <div class="industry-crown">
-                    <div class="crown-icon">👑</div>
-                    <h2>VR行业龙头</h2>
-                    <div class="crown-detail">
-                        <p>国家高新技术企业</p>
-                        <p>广东省守合同重信用企业</p>
-                        <p>广州市创新标杆企业</p>
-                        <p>VR店主联盟战略顾问单位</p>
-                    </div>
-                </div>
-            </div>
+            if (isWeChat) {
+                // 微信环境使用全屏跳转
+                window.location.href = `https://b23.tv/${bvid}?from=wechat`;
+            } else {
+                // 其他浏览器直接打开播放器
+                const popup = window.open('', '_blank');
+                popup.location.href = playerUrl;
+            }
+        }
 
-            <div class="corporate-pillar">
-                <div class="tech-tower">
-                    <div class="tower-icon">🏗️</div>
-                    <h3>研发矩阵</h3>
-                    <div class="tower-detail">
-                        <p>5000m²研发中心</p>
-                        <p>跨学科专业团队</p>
-                        <p>多项专利著作</p>
-                        <p>拥有核心技术领域</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="domain-spectrum">
-            <h3 class="title-2">核心业务生态</h3>
-            <div class="spectrum-grid">
-                <div class="domain-card">
-                    <div class="domain-icon">🌪️</div>
-                    <h4>灾害模拟系统</h4>
-                    <p>台风/地震/消防等公共安全馆</p>
-                </div>
-                <div class="domain-card">
-                    <div class="domain-icon">🎮</div>
-                    <h4>VR沉浸娱乐</h4>
-                    <p>科普教育/文旅体验/电竞空间</p>
-                </div>
-                <div class="domain-card">
-                    <div class="domain-icon">🎦</div>
-                    <h4>特效影院</h4>
-                    <p>轨道/飞行/悬空/4D/5D/7D/9D影院</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="showcase-monument">
-            <h3 class="title-2">行业标杆项目</h3>
-            <div class="monument-carousel">
-                <div class="monument-pillar">
-                    <div class="project-icon">🏰</div>
-                    <p>花都融创科普乐园</p>
-                </div>
-                <div class="monument-pillar">
-                    <div class="project-icon">🚌</div>
-                    <p>深圳西部公交系统</p>
-                </div>
-                <div class="monument-pillar">
-                    <div class="project-icon">🏛️</div>
-                    <p>海昏侯数字博物馆</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        // 图片加载失败处理
+        document.querySelectorAll('.video-thumb').forEach(img => {
+            img.onerror = function() {
+                this.src = 'https://placehold.co/600x400?text=封面加载失败';
+            }
+        });
+    </script>
 </body>
 </html>
